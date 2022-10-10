@@ -1,9 +1,4 @@
 ---
-- name: Install system dependencies
-  ansible.builtin.package:
-    name: gcc
-    state: present
-
 - name: Create download directory
   ansible.builtin.file:
     dest: "{{ go_download_dir }}"
@@ -20,6 +15,11 @@
     mode: 0644
 
 - block:
+    - name: Install system dependencies
+      ansible.builtin.package:
+        name: gcc
+        state: present
+
     - name: Create go SDK installation directory
       ansible.builtin.file:
         dest: "{{ go_install_dir }}"
