@@ -7,8 +7,18 @@
   ansible.builtin.shell:
     cmd: "go build -o {{ cicd_output_file }} {{ cicd_src_dir }}"
     chdir: "{{ cicd_workspace_dir }}"
+  register: __go_build_results
+
+- name: Output build results
+  ansible.builtin.debug:
+    var: __go_build_results
 
 - name: Run tests
   ansible.builtin.shell:
     cmd: "go test ./..."
     chdir: "{{ cicd_workspace_dir }}"
+  register: __go_test_results
+
+- name: Output test results
+  ansible.builtin.debug:
+    var: __go_test_results
