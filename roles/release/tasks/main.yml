@@ -1,0 +1,10 @@
+---
+- name: Slurp release file from build system
+  ansible.builtin.slurp:
+    src: "{{ cicd_workspace_dir }}/{{ cicd_output_file }}"
+  register: __build_output_file
+
+- name: Publish to S3
+  ansible.builtin.include_tasks:
+    file: s3.yml
+  when: release_target == 's3'

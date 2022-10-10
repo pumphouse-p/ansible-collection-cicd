@@ -1,0 +1,29 @@
+galaxy_info:
+  author: Devin Parrish
+  description: Install golang tools and perform a build and execute tests
+  company: Red Hat
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - golang
+    - system
+    - cicd
+
+dependencies: []

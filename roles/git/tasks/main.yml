@@ -1,0 +1,18 @@
+---
+- name: "Ensure git is installed"
+  ansible.builtin.package:
+    name: git
+    state: present
+  become: true
+
+- name: "Clone git repository"
+  ansible.builtin.git:
+    repo: "{{ git_src }}"
+    dest: "{{ git_dest }}"
+    version: "{{ git_version }}"
+    force: "{{ git_force }}"
+    recursive: "{{ git_recursive }}"
+    refspec: "{{ git_refspec }}"
+    remote: "{{ git_remote | default(omit) }}"
+    track_submodules: "{{ git_track_submodules }}"
+    clone: true

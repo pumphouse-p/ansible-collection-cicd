@@ -1,0 +1,18 @@
+---
+# Version of go SDK to install
+go_version: "1.19.1"
+
+# CPU architecture
+go_architecture: "amd64"
+
+# Base URL of go SDK
+go_sdk_url: "https://storage.googleapis.com/golang"
+
+# Installation location
+go_install_dir: "/opt/go/{{ go_version }}"
+
+# Download location
+go_download_dir: "{{ ansible_env.HOME + '/.downloads/go' }}"
+
+# Download through a proxy
+go_download_use_proxy: false

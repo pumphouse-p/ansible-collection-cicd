@@ -1,0 +1,14 @@
+---
+- name: Set up go tooling
+  ansible.builtin.include_tasks:
+    file: setup-gotools.yml
+
+- name: Build application
+  ansible.builtin.shell:
+    cmd: "go build -o {{ cicd_output_file }} {{ cicd_src_dir }}"
+    chdir: "{{ cicd_workspace_dir }}"
+
+- name: Run tests
+  ansible.builtin.shell:
+    cmd: "go test ./..."
+    chdir: "{{ cicd_workspace_dir }}"

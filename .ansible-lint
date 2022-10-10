@@ -1,0 +1,4 @@
+skip_list:
+  - new-line-at-end-of-file
+  - command-instead-of-shell
+  - no-changed-when

@@ -27,9 +27,9 @@ below describes the available variables.
 
 |    Variable Name     | Default | Required | Type |                           Description                           |
 |:--------------------:|:-------:|:--------:|:----:|:---------------------------------------------------------------:|
-| `cicd_workspace_dir` |   ""    |   yes    | str  |             Base directory where build files exist              |
-|  `cicd_output_file`  |   ""    |   yes    | str  | Filename relative to `cicd_workspace_dir` that contains release |
-
+| `cicd_workspace_dir` |   ""    |    no    | str  |             Base directory where build files exist              |
+|  `cicd_output_file`  |   ""    |    no    | str  | Filename relative to `cicd_workspace_dir` that contains release |
+|    `cicd_src_dir`    |   ""    |    no    | str  |  Path relative to `cicd_workspace_dir` where source code lives  |
 ### Role-Scoped
 
 The second scope for variables are set at the role-level. These role-scoped variables

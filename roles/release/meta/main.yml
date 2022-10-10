@@ -1,0 +1,30 @@
+galaxy_info:
+  author: Devin Parrish
+  description: Publish a release to a specified location/system
+  company: Red Hat
+
+  license: GPL-2.0-or-later
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - release
+    - s3
+    - system
+    - cicd
+
+dependencies: []

@@ -1,0 +1,58 @@
+---
+- name: Create download directory
+  ansible.builtin.file:
+    dest: "{{ go_download_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Download go SDK bundle
+  ansible.builtin.get_url:
+    url: "{{ go_sdk_url }}/{{ __go_sdk_filename }}"
+    dest: "{{ go_download_dir }}/{{ __go_sdk_filename }}"
+    force: false
+    validate_certs: true
+    use_proxy: "{{ go_download_use_proxy }}"
+    mode: 0644
+
+- block:
+    - name: Create go SDK installation directory
+      ansible.builtin.file:
+        dest: "{{ go_install_dir }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Install extraction utilities
+      ansible.builtin.dnf:
+        name:
+          - tar
+          - gzip
+        state: present
+
+    - name: Install go SDK
+      ansible.builtin.unarchive:
+        src: "{{ go_download_dir }}/{{ __go_sdk_filename }}"
+        dest: "{{ go_install_dir }}"
+        extra_opts:
+          - "--strip-components=1"
+        owner: root
+        group: root
+        creates: "{{ go_install_dir }}/bin"
+
+    - name: Ensure /etc/profile.d exists
+      ansible.builtin.file:
+        path: /etc/profile.d
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: Set go environment variables
+      ansible.builtin.template:
+        src: go.sh.j2
+        dest: /etc/profile.d/go.sh
+        owner: root
+        group: root
+        mode: 0644
+  become: true

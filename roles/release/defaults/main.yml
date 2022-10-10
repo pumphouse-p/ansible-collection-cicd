@@ -1,0 +1,5 @@
+---
+release_target:
+
+release_s3_bucket_versioning: true
+release_s3_bucket_create: true

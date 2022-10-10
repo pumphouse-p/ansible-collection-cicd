@@ -1,0 +1,2 @@
+---
+__go_sdk_filename: 'go{{ go_version }}.linux-{{ go_architecture }}.tar.gz'

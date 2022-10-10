@@ -1,0 +1,21 @@
+---
+- block:
+  - name: Ensure bucket exists on S3
+    amazon.aws.s3_bucket:
+      name: "{{ release_s3_bucket }}"
+      state: present
+      versioning: "{{ release_s3_bucket_versioning }}"
+
+  - name: Ensure release exists on S3
+    amazon.aws.aws_s3:
+      bucket: "{{ release_s3_bucket }}"
+      object: "{{ release_s3_object_name }}"
+      mode: put
+      tags: "{{ release_s3_tags | default(omit) }}"
+      content_base64: "{{ __build_output_file }}"
+    register: __s3_object
+
+  - name: Debug output
+    ansible.builtin.debug:
+      var: __s3_object
+  delegate_to: localhost
