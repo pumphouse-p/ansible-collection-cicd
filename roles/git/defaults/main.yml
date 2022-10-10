@@ -4,4 +4,3 @@ git_recursive: false
 git_track_submodules: false
 git_dest: "/home/{{ ansible_user }}/{{ cicd_app_name }}"
 git_version: main
-git_refspec: origin

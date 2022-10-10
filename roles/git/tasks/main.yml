@@ -12,7 +12,7 @@
     version: "{{ git_version }}"
     force: "{{ git_force }}"
     recursive: "{{ git_recursive }}"
-    refspec: "{{ git_refspec }}"
+    refspec: "{{ git_refspec | default(omit) }}"
     remote: "{{ git_remote | default(omit) }}"
     track_submodules: "{{ git_track_submodules }}"
     clone: true
