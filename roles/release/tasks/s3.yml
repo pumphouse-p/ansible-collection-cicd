@@ -12,7 +12,7 @@
       object: "{{ release_s3_object_name }}"
       mode: put
       tags: "{{ release_s3_tags | default(omit) }}"
-      content_base64: "{{ __build_output_file }}"
+      content_base64: "{{ __build_output_file['content'] }}"
     register: __s3_object
 
   - name: Debug output
